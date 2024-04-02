@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  mongodb-primary:
+    container_name: mongodb-primary
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: olo
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"  # Expose MongoDB primary port
+    volumes:
+      - mongodb-primary-data:/data/db  # Persist MongoDB primary data
+    networks:
+      - microservices-network
+
+  mongodb-secondary:
+    container_name: mongodb-secondary
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: olo
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27018:27017"  # Expose MongoDB secondary port
+    volumes:
+      - mongodb-secondary-data:/data/db  # Persist MongoDB secondary data
+    networks:
+      - microservices-network
+
+  mongodb-arbiter:
+    container_name: mongodb-arbiter
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: olo
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27019:27017"  # Expose MongoDB arbiter port
+    volumes:
+      - mongodb-arbiter-data:/data/db  # Persist MongoDB arbiter data
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    external: true
+
+volumes:
+  mongodb-primary-data:
+    driver: local
+  mongodb-secondary-data:
+    driver: local
+  mongodb-arbiter-data:
+    driver: local
+
