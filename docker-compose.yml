@@ -8,6 +8,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: olo
       MONGO_INITDB_ROOT_PASSWORD: password
+      TZ: Asia/Dubai  # Set timezone to Asia/Dubai
     ports:
       - "27017:27017"  # Expose MongoDB primary port
     volumes:
@@ -22,6 +23,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: olo
       MONGO_INITDB_ROOT_PASSWORD: password
+      TZ: Asia/Dubai  # Set timezone to Asia/Dubai
     ports:
       - "27018:27017"  # Expose MongoDB secondary port
     volumes:
@@ -36,6 +38,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: olo
       MONGO_INITDB_ROOT_PASSWORD: password
+      TZ: Asia/Dubai  # Set timezone to Asia/Dubai
     ports:
       - "27019:27017"  # Expose MongoDB arbiter port
     volumes:
